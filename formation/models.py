@@ -2,11 +2,19 @@ from django.db import models
 
 
 class Position(models.Model):
-    name = models.CharField("Name", max_length=255, unique=True)
+    class PositionTypes(models.TextChoices):
+        GOL = "Golero"
+        DEF = "Defensa"
+        MED = "Mediocampista"
+        DEL = "Delantero"
+        DIR = "Director Tecnico"
+
+    position_name = models.CharField("position_name", max_length=255, unique=True)
+    type = models.CharField(max_length=16, choices=PositionTypes.choices)
 
 
 class Player(models.Model):
-    name = models.CharField("Name", max_length=255)
+    player_name = models.CharField("player_name", max_length=255)
     position = models.ForeignKey(Position, models.CASCADE)
 
     def get_pk(self):
@@ -14,10 +22,10 @@ class Player(models.Model):
 
 
 class Formation(models.Model):
-    name = models.CharField("Name", max_length=255)
-    num_def = models.IntegerField("Number_Defenders")
-    num_mid = models.IntegerField("Number_Midfielders")
-    num_fwd = models.IntegerField("Number_Forwards")
+    formation_name = models.CharField("formation_name", max_length=255)
+    num_def = models.IntegerField("number_defenders")
+    num_mid = models.IntegerField("number_midfielders")
+    num_fwd = models.IntegerField("number_forwards")
 
 
 class PlayerFormation(models.Model):
