@@ -14,7 +14,8 @@ class Position(models.Model):
 
 
 class Player(models.Model):
-    player_name = models.CharField("player_name", max_length=255)
+    player_first_name = models.CharField("player_first_name", max_length=255)
+    player_last_name = models.CharField("player_last_name", max_length=255)
     position = models.ForeignKey(Position, models.CASCADE)
 
     def get_pk(self):

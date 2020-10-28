@@ -23,3 +23,10 @@ def get_position_by_type(request, typ):
 
     serializer = PositionSerializer(position, many=True)
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def get_positions(request):
+    positions = Position.objects.all()
+    serializer = PositionSerializer(positions, many=True)
+    return Response(serializer.data)

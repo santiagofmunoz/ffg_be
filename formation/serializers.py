@@ -11,7 +11,7 @@ class PositionSerializer(serializers.ModelSerializer):
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
-        fields = ('pk', 'player_name', 'position')
+        fields = ('pk', 'player_first_name', 'player_last_name', 'position')
 
 
 class FormationSerializer(serializers.ModelSerializer):
