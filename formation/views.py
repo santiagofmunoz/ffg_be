@@ -15,13 +15,13 @@ def create_player(request):
 
 
 @api_view(['GET'])
-def get_position_by_type(request, typ):
+def get_players_by_position_type(request, typ):
     try:
-        position = Position.objects.filter(type=typ)
-    except Position.DoesNotExist:
+        players = Player.objects.select_related('position').filter(position__type=typ)
+    except Player.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = PositionSerializer(position, many=True)
+    serializer = PlayerSerializer(players, many=True)
     return Response(serializer.data)
 
 
