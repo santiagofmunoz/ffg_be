@@ -20,9 +20,6 @@ class Player(models.Model):
     player_last_name = models.CharField("player_last_name", max_length=255)
     position = models.ForeignKey(Position, models.CASCADE, related_name="player_position")
 
-    def get_pk(self):
-        return self.player_id
-
 
 class Formation(models.Model):
     formation_id = models.AutoField(primary_key=True)
@@ -30,6 +27,9 @@ class Formation(models.Model):
     num_def = models.IntegerField("number_defenders")
     num_mid = models.IntegerField("number_midfielders")
     num_fwd = models.IntegerField("number_forwards")
+
+    def get_pk(self):
+        return self.pk
 
 
 class PlayerFormation(models.Model):

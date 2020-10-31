@@ -11,6 +11,12 @@ class PositionSerializer(serializers.ModelSerializer):
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
+        fields = ('player_id', 'player_first_name', 'player_last_name', 'position')
+
+
+class PlayerPositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Player
         depth = 1
         fields = ('player_id', 'player_first_name', 'player_last_name', 'position')
 
@@ -24,4 +30,4 @@ class FormationSerializer(serializers.ModelSerializer):
 class PlayerFormationSerializer(serializers.ModelSerializer):
     class Meta:
         model = PlayerFormation
-        fields = ('player_id', 'player', 'formation')
+        fields = ('player_formation_id', 'player', 'formation')

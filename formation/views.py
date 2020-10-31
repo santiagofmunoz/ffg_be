@@ -14,14 +14,30 @@ def create_player(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST'])
+def create_formation(request):
+    players_obj = request.data['players']
+    serializer = FormationSerializer(data=request.data)
+    if serializer.is_valid():
+        created_formation = serializer.save()
+        formation_id = created_formation.get_pk()
+        get_created_formation = Formation.objects.get(formation_id=formation_id)
+        for key in players_obj:
+            player_id = players_obj[key]
+            get_player = Player.objects.get(player_id=player_id)
+            PlayerFormation.objects.create(formation=get_created_formation, player=get_player)
+
+    return Response(status=status.HTTP_200_OK);
+
+
 @api_view(['GET'])
-def get_players_by_position_type(request, typ):
+def get_players_position_detail(request):
     try:
-        players = Player.objects.select_related('position').filter(position__type=typ)
+        players = Player.objects.all()
     except Player.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    serializer = PlayerSerializer(players, many=True)
+    serializer = PlayerPositionSerializer(players, many=True)
     return Response(serializer.data)
 
 
