@@ -1,6 +1,6 @@
 # Football Formation Generator
 
-## System requirements
+## System Requirements
 
 The following packages are mandatory to run the system:
 
@@ -13,7 +13,7 @@ The following packages are mandatory to run the system:
 
 ## Installation & Configuration
 
-Clone or download this repository to any directory you want in your computer. After that, you have to run the following command in the root folder of the project: `python3 -m venv env`
+Clone or download this repository to any directory you want in your computer. After that, you have to run the following command in the root folder of the project to create the virtual environment of the project: `python3 -m venv env`
 
 After the folder has been created, you have to run `source env/bin/activate` to activate the virtual environment
 
