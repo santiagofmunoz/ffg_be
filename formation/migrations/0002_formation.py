@@ -2,7 +2,7 @@ from django.db import migrations
 
 
 # Creation of default positions.
-def create_positions(apps):
+def create_positions(apps, schema_editor):
     positions = {
         "Golero": "GOL",
         "Carrilero izquierdo": "DEF",
