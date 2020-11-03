@@ -32,6 +32,7 @@ def position_switcher(position_name):
         "Volante derecho": [170, 250],
         "Extremo izquierdo": [430, 250],
         "Extremo derecho": [100, 250],
+        "Director técnico": [210, 40]
     }
     return switcher.get(position_name, [0, 1])
 
@@ -139,6 +140,9 @@ def export_formation_as_pdf(request, formation_id):
         xy_values = position_switcher(position_name)
         # We get the player's full name to print it in the PDF.
         player_name = player_obj['player_first_name'] + " " + player_obj['player_last_name']
+        if position_name == "Director técnico":
+            player_name = "Director técnico: " + player_name
+
         # We draw the string of the player's full name in the provided (x, y) values.
         p.drawString(xy_values[0], xy_values[1], player_name)
         # This piece of code repeats for each player in the formation.
