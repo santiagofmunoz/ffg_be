@@ -14,6 +14,8 @@ class PlayerSerializer(serializers.ModelSerializer):
         fields = ('player_id', 'player_first_name', 'player_last_name', 'position')
 
 
+# This serializer was created to support the situation where you need to do a JOIN with Position table and get the
+# information from Position table as well
 class PlayerPositionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Player
